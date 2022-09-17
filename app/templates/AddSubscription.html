@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+{% block tittle %} Add Subscription {% endblock %}
+{% block css %}  <link rel="stylesheet" href="{{ url_for('static', filename='add.css')}}">/>{% endblock %}
+{% block content %}
+    <div class="form-body">
+        <div class="row">
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <form action="#" method="POST">
+                        <h3>Add Subscription</h3>
+                        <form class="requires-validation" novalidate>
+
+                            <div class="col-md-12">
+                               <input class="form-control" type="text" name="name" placeholder="Subscription">
+                            </div>
+
+                            <div class="col-md-12">
+                                <input class="form-control" type="text" name="price" placeholder="Price">
+                            </div>
+
+                           <div class="col-md-12">
+                              <input class="form-control" type="text" name="start_date" placeholder="Start Date">
+
+                           </div>
+                            <div class="form-button mt-3">
+                                <button type="submit" class="btn btn-primary">ADD</button>
+                            </div>
+                        </form>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %} Register {% endblock %}
+{% block css %} <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css')}}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">{% endblock %}
+
+{% block script %}
+<script>
+async function deleteSubscription(id){
+	let URL = `/delete/${id}`;
+	let resp = await fetch(URL, { method: 'DELETE' });
+	if(resp.status == 204){
+		window.location.reload(true);
+	}
+}
+
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container-xl">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Your <b> Subscriptions</b></h2>
+					</div>
+
+				</div>
+			</div>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+
+						<th>Subscription </th>
+						<th>Start Date</th>
+						<th>Subscription price </th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for subscription in subscriptions %}
+					<tr>
+
+
+						<td>{{subscription.name}}</td>
+						<td>{{subscription.start_date}}</td>
+						<td>{{subscription.price}}</td>
+						<td>
+							<button onclick="deleteSubscription({{subscription._id}})"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+						</td>
+
+					</tr>
+					{% endfor %}
+					<tr>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div style = "position:absolute; left:680px; down:120px" class="form-button mt-3">
+<a href="/add">
+
+	<button type="submit" class="btn btn-primary">ADD</button>
+</a>
+	</div>
+
+{% endblock %}
